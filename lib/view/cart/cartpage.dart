@@ -212,25 +212,27 @@ class CartPage extends ConsumerWidget {
                   ),
                 ),
               ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.all(context.responsiveWidth(15)),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[900],
-                  minimumSize:
-                      Size(context.maxWidth(), context.responsiveHeight(50))),
-              onPressed: () {
-                Navigator.pop(context);
-                ref.read(cartProvider.notifier).clearlist();
-                context.showSnackbar("Order Placed Successfully");
-              },
-              child: Text(
-                "Place Order",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: context.responsiveWidth(16),
-                    fontWeight: FontWeight.w500),
-              )),
-        ));
+        bottomNavigationBar: list.isEmpty
+            ? const SizedBox()
+            : Padding(
+                padding: EdgeInsets.all(context.responsiveWidth(15)),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green[900],
+                        minimumSize: Size(
+                            context.maxWidth(), context.responsiveHeight(50))),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(cartProvider.notifier).clearlist();
+                      context.showSnackbar("Order Placed Successfully");
+                    },
+                    child: Text(
+                      "Place Order",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: context.responsiveWidth(16),
+                          fontWeight: FontWeight.w500),
+                    )),
+              ));
   }
 }
