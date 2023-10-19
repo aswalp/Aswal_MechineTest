@@ -224,6 +224,7 @@ class CartPage extends ConsumerWidget {
                     onPressed: () {
                       Navigator.pop(context);
                       ref.read(cartProvider.notifier).clearlist();
+                      ref.read(totalItemProvider.notifier).state = 0;
                       context.showSnackbar("Order Placed Successfully");
                     },
                     child: Text(

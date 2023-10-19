@@ -22,7 +22,38 @@ class HomePage extends ConsumerWidget {
         data: (data) => DefaultTabController(
             length: data[0].tableMenuList!.length,
             child: buildData(data, context)),
-        error: (error, stackTrace) => Text("error:$error"),
+        error: (error, stackTrace) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: context.maxWidth(),
+            ),
+            Icon(
+              Icons.error,
+              size: context.responsiveWidth(50),
+              color: Colors.red,
+            ),
+            IconButton(
+                onPressed: () {
+                  ref.invalidate(apidataProvider);
+                },
+                icon: Icon(
+                  Icons.refresh,
+                  color: Colors.black87,
+                  size: context.responsiveWidth(50),
+                )),
+            Text(
+              "Refresh",
+              style: TextStyle(
+                  fontSize: context.responsiveWidth(20), color: Colors.black54),
+            ),
+            Text(
+              "Something Went Wrong!",
+              style: TextStyle(
+                  fontSize: context.responsiveWidth(20), color: Colors.black54),
+            ),
+          ],
+        ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
