@@ -118,8 +118,6 @@ class Dishescard extends ConsumerWidget {
                           onPressed: () {
                             ref.read(cartProvider.notifier).addtcart(data);
                             ref.read(totalItemProvider.notifier).state++;
-
-                            log("message");
                           },
                         )
                       ],
