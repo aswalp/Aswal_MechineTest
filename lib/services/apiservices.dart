@@ -9,8 +9,8 @@ class ApiServices {
 
   static Future<List<ResaurantItemModel>> getdata() async {
     try {
-      Response res =
-          await dio.get("https://www.mocky.io/v2/5dfccffc310000efc8d2c1ad");
+      Response res = await dio
+          .get("https://run.mocky.io/v3/4d116e3e-808c-43ab-93ed-6c70540d4e18");
 
       if (res.statusCode == 200) {
         String json = jsonEncode(res.data);

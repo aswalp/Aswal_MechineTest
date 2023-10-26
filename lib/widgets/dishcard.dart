@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project/extension/extension.dart';
@@ -140,31 +141,19 @@ class Dishescard extends ConsumerWidget {
               ),
             ),
           ),
-          Container(
-            height: context.responsiveWidth(100),
-            width: context.responsiveWidth(100),
-
-            decoration: BoxDecoration(
-                // color: Colors.red,
-                borderRadius: BorderRadius.circular(20),
-                image: const DecorationImage(
-                    image: AssetImage("assets/images/dish.jpeg"),
-                    fit: BoxFit.cover)),
-            // child: SizedBox(
-            //   height: context.responsiveWidth(80),
-            //   width: context.responsiveWidth(80),
-            //   child: CachedNetworkImage(
-            //     fit: BoxFit.cover,
-            //     imageUrl: data[0]
-            //         .tableMenuList![0]
-            //         .categoryDishes![index]
-            //         .dishImage!,
-            //     placeholder: (context, url) =>
-            //         CircularProgressIndicator(),
-            //     errorWidget: (context, url, error) =>
-            //         const Icon(Icons.image),
-            //   ),
-            // ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: SizedBox(
+              height: context.responsiveWidth(80),
+              width: context.responsiveWidth(80),
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: data.dishImage!,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.image),
+              ),
+            ),
           ),
         ],
       ),
