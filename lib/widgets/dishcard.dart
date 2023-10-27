@@ -98,8 +98,9 @@ class Dishescard extends ConsumerWidget {
                             ref
                                 .read(cartProvider.notifier)
                                 .removefromcart(data);
-
-                            ref.read(totalItemProvider.notifier).state--;
+                            if (itemcount != null) {
+                              ref.read(totalItemProvider.notifier).state--;
+                            }
                           },
                         ),
                         Text(
