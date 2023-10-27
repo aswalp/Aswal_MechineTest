@@ -141,9 +141,13 @@ class CartPage extends ConsumerWidget {
                                           ref
                                               .read(cartProvider.notifier)
                                               .removefromcart(list[index]);
-                                          ref
-                                              .read(totalItemProvider.notifier)
-                                              .state--;
+                                          if (ref.watch(totalItemProvider) >
+                                              0) {
+                                            ref
+                                                .read(
+                                                    totalItemProvider.notifier)
+                                                .state--;
+                                          }
                                         },
                                         icon: const Icon(
                                           Icons.remove,
