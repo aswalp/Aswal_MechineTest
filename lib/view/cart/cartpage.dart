@@ -126,7 +126,6 @@ class CartPage extends ConsumerWidget {
                             ),
                             Container(
                               height: context.responsiveHeight(40),
-                              width: context.responsiveWidth(110),
                               decoration: BoxDecoration(
                                   color: Colors.green[900],
                                   borderRadius: BorderRadius.circular(30)),

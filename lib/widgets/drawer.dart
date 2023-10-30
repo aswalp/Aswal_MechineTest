@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project/extension/extension.dart';
+import 'package:project/providers/cartprovider.dart';
 import 'package:project/services/firebaseservices.dart';
 import 'package:project/view/auth/loginscreen.dart';
 
@@ -55,21 +57,26 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ),
-          ListTile(
-            onTap: () {
-              FirebaseServices.logout().then((value) {
-                context.gotoonetime(LoginScreen());
-              });
-            },
-            leading: const Icon(
-              Icons.logout,
-              color: Colors.black54,
-            ),
-            title: const Text(
-              "Logout",
-              style: TextStyle(color: Colors.black54),
-            ),
-          )
+          Consumer(builder: (__, ref, _) {
+            return ListTile(
+              onTap: () {
+                ref.watch(cartProvider).clearlist();
+                ref.read(totalItemProvider.notifier).state = 0;
+
+                FirebaseServices.logout().then((value) {
+                  context.gotoonetime(LoginScreen());
+                });
+              },
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.black54,
+              ),
+              title: const Text(
+                "Logout",
+                style: TextStyle(color: Colors.black54),
+              ),
+            );
+          })
         ],
       ),
     );
