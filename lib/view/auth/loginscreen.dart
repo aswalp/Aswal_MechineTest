@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:project/extension/extension.dart';
@@ -33,15 +35,25 @@ class LoginScreen extends StatelessWidget {
                 buttoncolor: Colors.blue,
                 ontap: () {
                   context.progressbar();
-                  FirebaseServices.signInWithGoogle().then((value) {
-                    if (value.user != null) {
-                      FirebaseServices.user = value.user!;
-                      Navigator.pop(context);
-                      context.gotoonetime(const HomePage());
-                    } else {
-                      context.showSnackbar("checkout your internet");
-                    }
-                  });
+                  try {
+                    FirebaseServices.signInWithGoogle().then((value) {
+                      if (value == null) {
+                        Navigator.pop(context);
+                        context.showSnackbar(
+                            "No Accounts selected, please try again");
+                        return;
+                      }
+                      if (value.user != null) {
+                        FirebaseServices.user = value.user!;
+                        Navigator.pop(context);
+                        context.gotoonetime(const HomePage());
+                      } else {
+                        context.showSnackbar("checkout your internet");
+                      }
+                    });
+                  } catch (e) {
+                    log(e.toString());
+                  }
                 },
                 buttonicon: CircleAvatar(
                   radius: context.responsiveWidth(14),

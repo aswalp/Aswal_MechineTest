@@ -66,6 +66,7 @@ class HomePage extends ConsumerWidget {
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
           // floating: true,
+          pinned: true,
           centerTitle: true,
           title: Text(
             data[0].restaurantName!,
@@ -127,7 +128,7 @@ class HomePage extends ConsumerWidget {
         SliverAppBar(
           pinned: true,
           elevation: 3,
-          primary: true,
+          primary: false,
           toolbarHeight: 0,
           bottom: TabBar(
               onTap: (value) {},
