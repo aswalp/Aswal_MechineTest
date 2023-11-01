@@ -43,6 +43,7 @@ class LoginScreen extends StatelessWidget {
                             "No Accounts selected, please try again");
                         return;
                       }
+
                       if (value.user != null) {
                         Navigator.pop(context);
                         FirebaseServices.user = value.user!;
@@ -52,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                       }
                     });
                   } catch (e) {
-                    log(e.toString());
+                    log("done");
                   }
                 },
                 buttonicon: CircleAvatar(
