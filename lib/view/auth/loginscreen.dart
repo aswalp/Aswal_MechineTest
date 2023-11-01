@@ -44,8 +44,8 @@ class LoginScreen extends StatelessWidget {
                         return;
                       }
                       if (value.user != null) {
-                        FirebaseServices.user = value.user!;
                         Navigator.pop(context);
+                        FirebaseServices.user = value.user!;
                         context.gotoonetime(const HomePage());
                       } else {
                         context.showSnackbar("checkout your internet");
